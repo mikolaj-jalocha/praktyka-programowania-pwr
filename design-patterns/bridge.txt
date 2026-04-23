@@ -1,0 +1,12 @@
+Wzorzec projektowy Most
+Wzorzec projektowy Most (który jest strukturalnym wzorcem projektowym), umożliwia rozdzielenie klas lub klasy na abstrakcję oraz implementację, co pozwala pracować na nich niezależnie.
+Problemem, który Most rozwiązuje jest np. problem w którym mamy do czynienia z klasą (np. Figura) zawierającą podklasy (np. opisujące figurę), którą chcemy rozszerzyć o kolejne podklasy opisujące inną cechę (np. opisujące kolor). W tym momencie konieczne byłoby stworzenie dużej ilości kombinacji klas (klasy opisujące jedną cechę * klasy opisujące drugą cechę). Zatem liczba klas rośnie wykładniczo.
+Przyczyną problemu jest próba poszerzenia klasy w dwóch wymiarach, które są od siebie niezależne. Należy zatem jeden z wymiarów wyciągnąć do osobnej hierarchii klas (np. Kolor).
+Abstrakcja (Figura) definiuje interfejs dla klasy, która kontroluje obie hierarchie klas. Podklasy opisujące konkretne kształty wykorzystują mechanizmy przekazane przez klasę Shape.
+Implementacja (Kolor) jest interfejsem cech szczegółowych. Dla implementacji konieczne jest stworzenie podklas (Biały, Czarny). Definiuje on podstawowe operacje, z których korzysta Abstrakcja.
+W implementacji konieczne jest:
+1.       Określenie płaszczyzny klas, czyli znalezienie cech rozwijających się od siebie niezależnie np. kolor i kształt.
+2.       Stworzenie interfejsu (np. Kolor), który deklaruje wspólne metody dla konkretnych cech.
+3.       Stworzenie klasy będącej abstrakcją (np. Kształt), które posiada pole typu interfejsu (Kolor kolor).
+4.       Połączenie warstw przez konstruktor klasy abstrakcyjnej, przekazanie do niego obiektu implementacji. To jest Most.
+5.       Zaimplementowanie delegacji - w metodach klasy Kształt (np. rysuj()), wywołanie metod obiektu z pola color np. (kolor.zamaluj())
